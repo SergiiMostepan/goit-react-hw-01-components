@@ -1,31 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Wrapper,
+  Avatar,
+  Description,
+  Name,
+  Tag,
+  Location,
+  Stats,
+  StatsElement,
+  Label,
+  Quantity,
+} from './UserCard.styled';
 
 const UserCard = ({ user }) => (
-  <div class="profile">
-    <div class="description">
-      <img src={user.avatar} alt={user.alt} class="avatar" />
-      <p class="name"> {user.name} </p> <p class="tag">@{user.tag} </p>
-      <p class="location"> {user.location} </p>
-    </div>
-    <ul class="stats">
-      <li>
-        <span class="label"> Followers </span>
-        <span class="quantity"> {user.stats.followers} </span>
-      </li>
-      <li>
-        <span class="label"> Views </span>
-        <span class="quantity"> {user.stats.views} </span>
-      </li>
-      <li>
-        <span class="label"> Likes </span>
-        <span class="quantity"> {user.stats.likes} </span>
-      </li>
-    </ul>
-  </div>
+  <Wrapper>
+    <Description>
+      <Avatar src={user.avatar} alt={user.name} />
+      <Name>{user.name}</Name>
+      <Tag>{'@' + user.tag}</Tag>
+      <Location>{user.location}</Location>
+    </Description>
+
+    <Stats>
+      <StatsElement>
+        <Label>Followers</Label>
+        <Quantity>{user.stats.followers}</Quantity>
+      </StatsElement>
+      <StatsElement>
+        <Label>Views</Label>
+        <Quantity>{user.stats.views}</Quantity>
+      </StatsElement>
+      <StatsElement>
+        <Label>Likes</Label>
+        <Quantity>{user.stats.likes}</Quantity>
+      </StatsElement>
+    </Stats>
+  </Wrapper>
 );
 
-UserCard.defaultProps = { alt: 'user avatar' };
+UserCard.defaultProps = {
+  alt: 'user avatar',
+};
 UserCard.propTypes = {
   user: PropTypes.exact({
     name: PropTypes.string.isRequired,
